@@ -56,8 +56,8 @@ async function Signup(req,res){
         console.log(token)
         res.cookie('token', token, {
           httpOnly: true,
-          
-          sameSite:"Lax",
+          secure: true,        
+          sameSite: 'None',
          
         });
 
@@ -99,8 +99,8 @@ async function Login(req,res) {
         const token=genrateToken(user)
         res.cookie('token', token, {
           httpOnly: true,
-          
-          sameSite: 'Lax',
+            secure: true,        
+          sameSite: 'None',
          
         });
 
