@@ -16,7 +16,7 @@ const  bookingRoute =require("./routes/Booking.js")
 const corsOption = {
     origin: process.env.CLIENT_SITE_URL,  
     methods: "GET, PUT, DELETE, POST, PATCH",
-    credentials: 'include' // ⬅️ Allow cookie
+    credentials: true // ⬅️ Allow cookie
   };
 
 
