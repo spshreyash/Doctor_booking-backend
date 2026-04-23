@@ -1,9 +1,10 @@
 const Doctor =require("../model/Doctor.js")
-
+const bcrypt = require("bcrypt");
 async function getAlluser(req,res)
 {
     try {
         const{query}=req.query
+        const query = req.query.query?.trim();
         let doctor;
         if(query)
         {
