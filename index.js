@@ -14,7 +14,7 @@ const doctorRoute=require("./routes/docotor.js")
 const  bookingRoute =require("./routes/Booking.js")
 
 const corsOption = {
-    origin: "process.env.CLIENT_SITE_URL",  
+    origin: process.env.CLIENT_SITE_URL,  
     methods: "GET, PUT, DELETE, POST, PATCH",
     credentials: true // ⬅️ Allow cookie
   };
