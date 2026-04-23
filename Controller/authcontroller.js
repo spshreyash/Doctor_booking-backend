@@ -10,7 +10,7 @@ async function Signup(req,res){
  try {
       let user=null
       const{email,name,role,password,gender,photo,}=req.body
-      if(role === "Patient")
+      if(role === "patient")
       {
         user=await User.findOne({email:email}) 
       }
