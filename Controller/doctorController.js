@@ -138,7 +138,7 @@ async function getDoctorProfile(req,res)
         res.clearCookie("token", {
             httpOnly: true,
             secure: false, // Change to true in production
-            sameSite: "lax"
+            sameSite: "none"
         });
 
         res.send(" you are log out ")

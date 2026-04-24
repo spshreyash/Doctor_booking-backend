@@ -14,7 +14,7 @@ const doctorRoute=require("./routes/docotor.js")
 const  bookingRoute =require("./routes/Booking.js")
 
 const corsOption = {
-    origin: "https://doctor-booking-project.netlify.app",  
+    origin: 'https://doctor-booking-frontend11.netlify.app/',  
     methods: "GET, PUT, DELETE, POST, PATCH",
     credentials: true // ⬅️ Allow cookie
   };
