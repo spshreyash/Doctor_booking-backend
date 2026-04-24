@@ -12,7 +12,7 @@ async function allReviews(req,res)
         return res.json({ success:true, msg:"revies found" , allReviews:allReviews})
     } catch (error) {
         console.log(error)
-        return res.json({ success:false, msg:"revies not found"})
+        return res.status(500).json({ success:false, msg:"revies not found"})
         
     }
 }

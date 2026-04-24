@@ -54,7 +54,7 @@ async function getsingleuser(req,res)
           return res.json({success:true,msg:"user foud",doctorWithReviews:doctorWithReviews})
         
      } catch (error) {
-        return res.json({success:false,msg:"usernot foud",})
+        return res.status(500).json({success:false,msg:"usernot foud"})
      }
 }
 
@@ -78,12 +78,12 @@ async function updateuser(req,res)
 
            if(!doctor)
            {
-            return res.json({msg:"user not found "})
+            return res.status(404).json({msg:"user not found "})
            }
             return res.json({success:true,msg:"user update done",doctor:doctor})
     } catch (error) {
    console.log(error)
-        return res.json({success:false,msg:"user not update done"})
+        return res.status(500).json({success:false,msg:"user not update done"})
         
     }
 }
@@ -97,12 +97,12 @@ async function deleteUser(req,res)
 
            if(!doctor)
            {
-            return res.json({msg:"user not found "})
+            return res.status(404).json({msg:"user not found "})
            }
             return res.json({success:true,msg:"user delete  done",doctor:doctor})
     } catch (error) {
    console.log(error)
-        return res.json({success:false,msg:"user not delete done"})
+        return res.status(500).json({success:false,msg:"user not delete done"})
         
     }
 }
@@ -119,13 +119,13 @@ async function getDoctorProfile(req,res)
 
           if(!doctor)
           {
-            return res.json({success:false,msg:"user not found "})
+            return res.status(404).json({success:false,msg:"user not found "})
           }
 
           return res.json({success:true,msg:"user found successfully", doctor:doctor})
         
     } catch (error) {
-          res.json({success:false,msg:"user not found "})
+          res.status(500).json({success:false,msg:"user not found "})
         
     }
 }
@@ -138,14 +138,15 @@ async function getDoctorProfile(req,res)
         res.clearCookie("token", {
             httpOnly: true,
             secure: false, // Change to true in production
-            sameSite: "none"
+            sameSite: "none",
+             path: "/"
         });
 
-        res.send(" you are log out ")
+        res.status(200).json({ msg: "you are logged out" });
         
     } catch (error) {
         console.log(error)
-        
+         res.status(500).json({ msg: "you are not  logged out",error:error });
     }
 }
 

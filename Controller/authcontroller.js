@@ -20,7 +20,7 @@ async function Signup(req,res){
       }
       if(user)
       {
-        return res.json({msg:"use alredy exists "})
+        return res.status(409).json({msg:"use alredy exists "})
       }
 
        const salt=await bcrypt.genSalt(10)
@@ -58,15 +58,16 @@ async function Signup(req,res){
           httpOnly: true,
           secure: true,        
           sameSite: 'None',
+           path: "/",
          
         });
 
         console.log(user)
-        return res.send({msg:"user created Done !",user:user})
+        return res.status(201).json({msg:"user created Done !",user:user})
 
  } catch (error) {
     console.log(error)
-    return res.send({msg:"server problem !"})
+    return res.status(500).json({msg:"server problem !"})
  }
 } 
 
@@ -85,7 +86,7 @@ async function Login(req,res) {
 
         if(!user)
         {
-            return res.json({msg:"something wrong in email not found"})
+            return res.status(404).json({msg:"something wrong in email not found"})
 
         }
 
@@ -94,23 +95,24 @@ async function Login(req,res) {
   
          if(!isMatch)
          {
-             return res.json({msg:"password wrong"})
+             return res.status(401).json({msg:"password wrong"})
          }
         const token=genrateToken(user)
         res.cookie('token', token, {
           httpOnly: true,
             secure: true,        
           sameSite: 'None',
+           path: "/",
          
         });
 
         console.log("this data is logging data ", user)
-        return res.json({msg:"logging Done ",user:user,token:token})
+        return res.status(200).json({msg:"logging Done ",user:user,token:token})
 
 
     } catch (error) {
         console.log(error)
-        
+        res.status(500).json({msg:'server error',error:error})
     }
 }
 
